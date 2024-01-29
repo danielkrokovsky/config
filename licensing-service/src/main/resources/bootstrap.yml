@@ -1,12 +1,8 @@
 spring:
   application:
-    name: licensing-service
+    name: licensing-service 
   profiles:
     active: native
   cloud:
-    config:
+    config: 
       uri: http://localhost:8071
-      
-          
-server:
-  port: 8080
