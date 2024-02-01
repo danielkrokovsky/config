@@ -1,12 +1,22 @@
 spring:
   application:
-    name: licensing-service
+    name: config-server
   profiles:
-    active: native
+    active:
+    - native
   cloud:
     config:
-      uri: http://localhost:8071
+      server:
+        native:
+          search-locations: classpath:/config
       
           
 server:
   port: 8071
+  
+#Enable all Spring Boot Actuator endpoints.
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
