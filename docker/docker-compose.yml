@@ -47,14 +47,16 @@ services:
     image: ostock/licensing-service:0.0.2-SNAPSHOT
     environment:
       PROFILE: "dev"
-      CONFIGSERVER_URI: "http://configserver:8071"
-      CONFIGSERVER_PORT:   "8071"
-      DATABASESERVER_PORT: "5432"
+      #CONFIGSERVER_URI: "http://configserver:8071"
+      #CONFIGSERVER_PORT:   "8071"
+      #DATABASESERVER_PORT: "5432"
       ENCRYPT_KEY:       "IMSYMMETRIC"
     depends_on:
       database:
         condition: service_healthy
       configserver:
+        condition: service_started
+      eurekaserver:
         condition: service_started
     ports:
       - "8080:8080"
@@ -65,14 +67,16 @@ services:
     image: ostock/organization-service:0.0.1-SNAPSHOT
     environment:
       PROFILE: "dev"
-      CONFIGSERVER_URI: "http://configserver:8071"
-      CONFIGSERVER_PORT:   "8071"
-      DATABASESERVER_PORT: "5432"
+      #CONFIGSERVER_URI: "http://configserver:8071"
+      #CONFIGSERVER_PORT:   "8071"
+      #DATABASESERVER_PORT: "5432"
       ENCRYPT_KEY:       "IMSYMMETRIC"
     depends_on:
       database:
         condition: service_healthy
       configserver:
+        condition: service_started
+      eurekaserver:
         condition: service_started
     ports:
       - "8081:8081"
