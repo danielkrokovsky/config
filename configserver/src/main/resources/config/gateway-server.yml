@@ -1,0 +1,36 @@
+server:
+  port: 8072
+ 
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eurekaserver:8070/eureka/
+      
+ 
+spring:
+  cloud:
+    loadbalancer.ribbon.enabled: false
+    gateway:
+      #discovery.locator:
+      #  enabled: true
+      #  lowerCaseServiceId:
+      routes:
+      - id: organization-service    #A
+        uri: lb://organization-service    #B
+        predicates:    #C
+        - Path=/organization/**
+        filters: #D
+        - RewritePath=/organization/(?<path>.*), /$\{path}    #E
+
+
+       
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
