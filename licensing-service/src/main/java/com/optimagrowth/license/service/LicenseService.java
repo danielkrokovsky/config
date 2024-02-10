@@ -29,7 +29,7 @@ import io.github.resilience4j.retry.annotation.Retry;
 
 @Service
 public class LicenseService {
-
+	
 	@Autowired
 	MessageSource messages;
 
@@ -53,6 +53,7 @@ public class LicenseService {
 
 	public License getLicense(String licenseId, String organizationId){
 		License license = licenseRepository.findByOrganizationIdAndLicenseId(organizationId, licenseId);
+		logger.info(license.toString());
 		if (null == license) {
 			throw new IllegalArgumentException(String.format(messages.getMessage("license.search.error.message", null, null),licenseId, organizationId));	
 		}

@@ -13,7 +13,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 
-@Getter @Setter @ToString
+@Getter 
+@Setter 
+@ToString
 @Entity
 @Table(name="licenses")
 public class License extends RepresentationModel<License> {
